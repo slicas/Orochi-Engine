@@ -1,0 +1,23 @@
+import platform
+import tkinter as tk
+from tkinter import filedialog
+
+class Files:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.withdraw()
+        
+    def dir(self):
+        directory = filedialog.askdirectory()
+        if platform.system() == 'Windows':
+            return directory.replace('/', '\\')
+        else:
+            return directory
+    def file(self):
+        directory = filedialog.askopenfilename()
+        if platform.system() == 'Windows':
+            return directory.replace('/', '\\')
+        else:
+            return directory
+    def dst(self):
+        self.root.destroy()
