@@ -1,0 +1,14 @@
+Português:
+
+Para a pasta "src":
+"Aqui é onde você deve colocar os recursos do jogo, como imagens, sons, bancos de dados, arquivos, entre outros."
+
+Inglês:
+
+For the "src" folder:
+"This is where you should place the game's resources, such as images, sounds, databases, files, and more."
+
+
+Para la carpeta "src":
+"Aquí es donde debes colocar los recursos del juego, como imágenes, sonidos, bases de datos, archivos y más."
+
