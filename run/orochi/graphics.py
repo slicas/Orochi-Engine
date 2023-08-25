@@ -1,5 +1,5 @@
 import pyray as pr
-from orochi.utils import *
+from orochi.community import *
 from orochi.dir import *
 cur_dir = CLIENT_DIR
 Vector2 = pr.Vector2

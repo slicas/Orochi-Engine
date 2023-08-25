@@ -8,7 +8,7 @@ game.init()
 Import modules after game.init()
 Example below:
 """
-from orochi.utils import * 
+from orochi.community import * 
 from orochi.keyboard import *
 from orochi.gui import *
 from orochi.files import *

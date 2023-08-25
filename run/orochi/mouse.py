@@ -1,5 +1,5 @@
 import pyray as pr
-from orochi.utils import *
+from orochi.community import *
 from orochi.math import point_direction
 MB_LEFT = pr.MouseButton.MOUSE_BUTTON_LEFT
 MB_RIGHT = pr.MouseButton.MOUSE_BUTTON_RIGHT

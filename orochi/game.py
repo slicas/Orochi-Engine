@@ -15,7 +15,7 @@ Pixelorama: https://github.com/Orama-Interactive/Pixelorama\n
 import pyray as pr
 from orochi.scene import Scene
 from orochi.graphics import *
-from orochi.utils import *
+from orochi.community import *
 from orochi.camera import Camera
 import sys
 import types

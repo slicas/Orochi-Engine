@@ -13,7 +13,7 @@ Lapce: https://github.com/lapce/lapce \n
 import pyray as pr
 from orochi.scene import Scene
 from orochi.graphics import *
-from orochi.utils import *
+from orochi.community import *
 from orochi.camera import Camera
 from orochi.mouse import *
 import sys
