@@ -36,7 +36,7 @@ The Orochi Engine is 100% free and open source, relying solely on other open sou
 <p align="center">
   <a href="https://github.com/raysan5/raylib">Raylib</a><br>
   <a href="https://github.com/pygame/pygame">PyGame</a><br>
-  <a href="https://github.com/Orama-Interactive/Pixelorama">Lapce</a>
+  <a href="https://github.com/lapce/lapce">Lapce</a>
 </p>
 </p>
 <p align = "justify">
