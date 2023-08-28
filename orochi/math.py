@@ -3,6 +3,8 @@ import random
 from noise import snoise2
 from perlin_noise import PerlinNoise
 import numpy
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 from pygame import math as pgmath
 from pyray import Vector2 as v2
 random = random

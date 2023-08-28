@@ -7,7 +7,7 @@ game.init()
 Import modules after game.init()
 Example below:
 """
-from orochi.utils import * 
+from orochi.graphics import * 
 
 
 def game_update():
@@ -27,6 +27,5 @@ Special thanks to:
 Raylib: https://github.com/raysan5/raylib
 Lapce: https://github.com/lapce/lapce
 Pygame: https://github.com/pygame/pygame
-Pixelorama: https://github.com/Orama-Interactive/Pixelorama
 
 """

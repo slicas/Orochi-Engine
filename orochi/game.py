@@ -1,18 +1,7 @@
-print("""
-Special thanks to: \n
-
-Raylib: https://github.com/raysan5/raylib \n
-
-Lapce: https://github.com/lapce/lapce \n
-
-Pygame: https://github.com/pygame/pygame \n
-      
-Pixelorama: https://github.com/Orama-Interactive/Pixelorama\n
-      
-      """)
 
 
 import pyray as pr
+from orochi.orochi import *
 from orochi.scene import Scene
 from orochi.graphics import *
 from orochi.community import *
@@ -50,7 +39,7 @@ class Game:
         self.alarms = []
         self.particles = []
         self.__steps = 0
-        self.scene = Scene("0",self,self.window_width,self.window_height)
+        self.__scene = Scene("0",self,self.window_width,self.window_height)
         self.physics = None
         self.__update = None
         self.__gui_draw= None
@@ -60,6 +49,23 @@ class Game:
                 self.window_icon = pr.load_image(f'{ENGINE_DIR}/src/orochi_icon.png')
         else:
              self.window_icon = window_icon
+    @property
+    def scene(self):
+        return self.__scene
+    @scene.setter
+    def scene(self,scene):
+        act_scene = self.__scene 
+        if(not act_scene.persistent):
+            for layer in act_scene.layers:
+                for object in layer.get_objects():
+                    if not object.destroyed:
+                       object.destroy()
+                for particle in layer.get_particles():
+                    particle.destroy()
+        self.__scene = scene
+        if(self.__scene.get_on_ready):
+            self.__scene.get_on_ready()
+
     @property
     def running(self):
         return self.__running
@@ -75,10 +81,13 @@ class Game:
     def init(self):
         if(self.resizable):
             pr.set_config_flags(pr.ConfigFlags.FLAG_WINDOW_RESIZABLE)
+        pr.set_trace_log_level(7)
         pr.init_window(self.window_width,self.window_height,self.window_title)
         pr.init_audio_device()   
         pr.set_window_icon(self.window_icon)
         pr.set_target_fps(self.fps_target)
+        dev_message()
+
 
     def toggle_fullscreen(self):
         pr.toggle_fullscreen()
@@ -130,7 +139,7 @@ class Game:
     
             if self.__update:
                 self.__update()
-            for layer in self.scene.layers:
+            for layer in self.__scene.layers:
                 if layer.get_id() != "GUI":
                     for object in layer.get_objects():
                         if not object.destroyed:
@@ -150,7 +159,7 @@ class Game:
 
             pr.end_mode_2d()
 
-            for layer in self.scene.layers:
+            for layer in self.__scene.layers:
                 if layer.get_id() == "GUI":
                     for object in layer.get_objects():
                         if not object.destroyed:

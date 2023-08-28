@@ -13,7 +13,7 @@ import colorsys
 cur_dir = CLIENT_DIR
 
 
-def move_4way(object,speed,buttons = ["w","a","s","d"],rotation = False,profile = True):
+def move_4ways(object,speed,buttons = ["w","a","s","d"],rotation = False,profile = True):
     if(key_down(buttons[0])):
         object.y -= speed
     elif(key_down(buttons[2])):
