@@ -140,7 +140,18 @@ class Object:
         self.__layer = new_layer
         self.__layer.add(self)
         return True
-    
+    def destroy(self):
+        self.get_layer().delete(self)
+        self.__scene.objects.remove(self)
+        self.scene = None
+        self.layer = None
+        self.destroyed = True
+        for tag in self.tags:
+            if(self in tag.get_objects()):
+                tag.delete(self)
+        self.tags = []
+        self.game.len_objects -= 1
+
     def render(self):
         if(self.animation):
             self.animation.play(self.animation_speed,self)
@@ -159,17 +170,6 @@ class Object:
         self.set_layer(layer)
         self.destroyed = False
         self.__ID = self.game.len_objects
-    def destroy(self):
-        self.get_layer().delete(self)
-        self.__scene.objects.remove(self)
-        self.scene = None
-        self.layer = None
-        self.destroyed = True
-        for tag in self.tags:
-            if(self in tag.get_objects()):
-                tag.delete(self)
-        self.tags = []
-        self.game.len_objects -= 1
 
 
 def object_instantiate(game,x,y,width,height,scene = None,layer = None,image = None,tags = [],origin = 0,tint = pr.WHITE,angle = 0,update = None,draw = None):

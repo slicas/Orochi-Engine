@@ -1,11 +1,13 @@
 
 
+
 import pyray as pr
-from orochi.orochi import *
 from orochi.scene import Scene
 from orochi.graphics import *
 from orochi.community import *
 from orochi.camera import Camera
+from orochi.mouse import *
+from orochi.orochi import *
 import sys
 import types
 from orochi.dir import *
@@ -13,7 +15,6 @@ import traceback
 from orochi.alert import ERROR
 import time
 cur_dir = ENGINE_DIR
-
 
 class Game:
     def __init__(self,window_width = 500,window_height = 500,window_title = "Made with Orochi",window_icon = None,resizable = False):
@@ -36,10 +37,13 @@ class Game:
         self.sound_instances = []
         self.animations = []
         self.scenes = []
+        self.__scene = Scene("0",self,self.window_width,self.window_height)
         self.alarms = []
         self.particles = []
+        self.gui_components = []
         self.__steps = 0
-        self.__scene = Scene("0",self,self.window_width,self.window_height)
+
+
         self.physics = None
         self.__update = None
         self.__gui_draw= None
@@ -49,23 +53,22 @@ class Game:
                 self.window_icon = pr.load_image(f'{ENGINE_DIR}/src/orochi_icon.png')
         else:
              self.window_icon = window_icon
-    @property
-    def scene(self):
-        return self.__scene
-    @scene.setter
-    def scene(self,scene):
-        act_scene = self.__scene 
-        if(not act_scene.persistent):
-            for layer in act_scene.layers:
-                for object in layer.get_objects():
-                    if not object.destroyed:
-                       object.destroy()
-                for particle in layer.get_particles():
-                    particle.destroy()
-        self.__scene = scene
-        if(self.__scene.get_on_ready):
+    @property	
+    def scene(self):	
+        return self.__scene	
+    @scene.setter	
+    def scene(self,scene):	
+        act_scene = self.__scene 	
+        if(not act_scene.persistent):	
+            for layer in act_scene.layers:	
+                for object in layer.get_objects():	
+                    if not object.destroyed:	
+                       object.destroy()	
+                for particle in layer.get_particles():	
+                    particle.destroy()	
+        self.__scene = scene	
+        if(self.__scene.get_on_ready):	
             self.__scene.get_on_ready()
-
     @property
     def running(self):
         return self.__running
@@ -108,10 +111,17 @@ class Game:
         pr.close_audio_device()
         pr.close_window()
         sys.exit()
+    def awalys_on_top(self,state = True):
+        if(state):
+            pr.set_window_state(pr.ConfigFlags.FLAG_WINDOW_TOPMOST)
+        else:
+            pr.clear_window_state(pr.ConfigFlags.FLAG_WINDOW_TOPMOST) 
     def get_running_time(self):
         return self.__time
     def looping(self):
         try:
+            change_cursor(DEFAULT_CURSOR)
+            
             self.__time = time.time() - self.__init_time
             self.window_width = pr.get_screen_width()
             self.window_height = pr.get_screen_height()
@@ -124,7 +134,6 @@ class Game:
                 self.close()
             for music in self.musics:
                 pr.update_music_stream(music)
-
 
             pr.begin_drawing()
             pr.clear_background(self.clear_color)
@@ -139,43 +148,44 @@ class Game:
     
             if self.__update:
                 self.__update()
-            for layer in self.__scene.layers:
-                if layer.get_id() != "GUI":
-                    for object in layer.get_objects():
-                        if not object.destroyed:
-                            object.x += object.speed * math.cos(math.radians(object.direction))
-                            object.y += object.speed * math.sin(math.radians(object.direction))
-                            object.get_draw()
-                            object.get_update()
-                            object.render()
-                            for body in object.get_all_collisions_bodies():
-                                body.update()
-                    for particle in layer.get_particles():
-                        if(self.get_running_time() < particle.life):
-                            particle.update()
-                            particle.draw()
-                        else:
+            for layer in self.__scene.layers:	
+                if layer.get_id() != "GUI":	
+                    for object in layer.get_objects():	
+                        if not object.destroyed:	
+                            object.x += object.speed * math.cos(math.radians(object.direction))	
+                            object.y += object.speed * math.sin(math.radians(object.direction))	
+                            object.get_draw()	
+                            object.get_update()	
+                            object.render()	
+                            for body in object.get_all_collisions_bodies():	
+                                body.update()	
+                    for particle in layer.get_particles():	
+                        if(self.get_running_time() < particle.life):	
+                            particle.update()	
+                            particle.draw()	
+                        else:	
+                            particle.destroy()	
+            pr.end_mode_2d()	
+            for layer in self.__scene.layers:	
+                if layer.get_id() == "GUI":	
+                    for object in layer.get_objects():	
+                        if not object.destroyed:	
+                            object.x += object.speed * math.cos(math.radians(object.direction))	
+                            object.y += object.speed * math.sin(math.radians(object.direction))	
+                            object.get_draw()	
+                            object.get_update()	
+                            object.render()	
+                            for body in object.get_all_collisions_bodies():	
+                                body.update()	
+                    for particle in layer.get_particles():	
+                        if(self.get_running_time() < particle.life):	
+                            particle.update()	
+                            particle.draw()	
+                        else:	
                             particle.destroy()
-
-            pr.end_mode_2d()
-
-            for layer in self.__scene.layers:
-                if layer.get_id() == "GUI":
-                    for object in layer.get_objects():
-                        if not object.destroyed:
-                            object.x += object.speed * math.cos(math.radians(object.direction))
-                            object.y += object.speed * math.sin(math.radians(object.direction))
-                            object.get_draw()
-                            object.get_update()
-                            object.render()
-                            for body in object.get_all_collisions_bodies():
-                                body.update()
-                    for particle in layer.get_particles():
-                        if(self.get_running_time() < particle.life):
-                            particle.update()
-                            particle.draw()
-                        else:
-                            particle.destroy()
+            for component in self.gui_components:
+                component.render()
+                component.update()
 
             if(self.__gui_draw):
                 self.__gui_draw()
@@ -183,9 +193,9 @@ class Game:
             pr.end_drawing()
             for alarm in self.alarms:
                 alarm.start(self)
+            
         except Exception as e:
             if(ERROR(e,traceback.format_exc()) == "Exit"):
                 self.close()
 
             
-

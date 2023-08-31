@@ -1,11 +1,30 @@
 import json
 import tempfile
 import os
-from dir import *
+from orochi.game import *
+
+from orochi.dir import *
+import promptlib
 import configparser
+from orochi.os import *
 json = json
 cur_dir = CLIENT_DIR
+cur_dir += "/src/"
 temp_dir = tempfile.gettempdir()
+
+
+
+
+
+
+def get_folder():
+    prompter = promptlib.Files()
+    folder = prompter.dir()
+    return folder
+def get_file():
+    prompter = promptlib.Files()
+    file = prompter.file()
+    return file
 
 def file_exist(src,temp = False):
     file = f"{cur_dir}/{src}" if not temp else f"{temp_dir}/{src}"
@@ -22,8 +41,10 @@ def read_json(filename,temp = False):
     with open(filename,"r") as out:
         return json.load(out)
     
-def to_json(data):
+def json_to_string(data):
     return json.dumps(data)
+def string_to_json(data):
+    return json.loads(data)
 
 def create_ini(filename, temp=False):
     file_path = os.path.join(temp_dir if temp else cur_dir, f"{filename}.ini")
@@ -73,3 +94,24 @@ def get_all_keys(filename, temp=False):
 
     return keys
 
+class Listener:
+    def __init__(self,game,ID):
+        self.__game = game
+        self.__keys = {}
+        self.__ID = ID
+        self.__values = {}
+    def add_key(self,ID,value = ""):
+        self.__keys[ID] = value
+        return value
+    def init(self):
+        self.__game.awalys_on_top()
+        write_json(self.__ID,json_to_string(self.__keys))
+        windows_cmd_command_execute(f"{cur_dir}{self.__ID}.json")
+    def update(self):
+        self.__values = read_json(self.__ID)
+    def listen(self,ID):
+        try:
+            return self.__values[ID]
+        except Exception as e:
+            print(self.__values,f"\nError on: {e}")
+            return 0

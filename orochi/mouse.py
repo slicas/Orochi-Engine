@@ -5,6 +5,16 @@ MB_LEFT = pr.MouseButton.MOUSE_BUTTON_LEFT
 MB_RIGHT = pr.MouseButton.MOUSE_BUTTON_RIGHT
 MB_MIDDLE = pr.MouseButton.MOUSE_BUTTON_MIDDLE
 
+INPUT_CURSOR = pr.MouseCursor.MOUSE_CURSOR_IBEAM
+RESIZE_CURSOR = pr.MouseCursor.MOUSE_CURSOR_RESIZE_ALL
+NOT_CURSOR = pr.MouseCursor.MOUSE_CURSOR_NOT_ALLOWED
+POINTER_CURSOR = pr.MouseCursor.MOUSE_CURSOR_POINTING_HAND
+CROSSHAIR_CURSOR = pr.MouseCursor.MOUSE_CURSOR_CROSSHAIR
+DEFAULT_CURSOR = pr.MouseCursor.MOUSE_CURSOR_DEFAULT
+
+
+def change_cursor(cursor):
+    pr.set_mouse_cursor(cursor)
 def get_gui_mouse_position():
     return pr.get_mouse_x(),pr.get_mouse_y()
 

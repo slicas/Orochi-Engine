@@ -1,11 +1,12 @@
 import sqlite3 as sq
 from orochi.alert import ERROR
 import traceback
-
+from orochi.dir import CLIENT_DIR
+cur_dir = CLIENT_DIR + "/src/"
 class Database:
     def __init__(self,name):
         self.name = name
-        self.conn = sq.connect(f"{self.name}.db")
+        self.conn = sq.connect(f"{cur_dir}{self.name}.db")
         self.report_error = True
     def drop(self,table):
         command = f'''

@@ -1,7 +1,5 @@
 import pyray as pr
 from orochi.game import Game
-import os
-import vlc
 from orochi.dir import *
 
 
@@ -61,11 +59,3 @@ def instance_sound(src,pitch = 1,pan =.5,volume = 100):
      pr.play_sound(sound)
     
 
-
-class SimpleSound:
-    def __init__(self,src):
-        self.sound = vlc.MediaPlayer(f'{cur_dir}{src}')
-    def play(self):
-        self.sound.play()
-    def stop(self):
-        self.sound.stop()
