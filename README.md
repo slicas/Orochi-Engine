@@ -9,7 +9,7 @@
   An Engine made with Python
 </h2>
 <p align="justify">We all know that it's something out of the ordinary; however, we should never turn down the opportunity to embark on a crazy experiment under any circumstances!<br>
-The Orochi Engine features several modules that enable the creation of 2D games for the Windows platform. Managing animations, databases, files, sprites, objects, and online games with Orochi is extremely straightforward.<br>
+The Orochi Engine features several modules that enable the creation of 2D games for the Windows and Linux<i>(coming soon)</i> platforms. Managing animations, databases, files, sprites, objects, and online games with Orochi is extremely straightforward.<br>
 Developed in Python, Orochi gives users an incredible level of control over their code, allowing the installation of external libraries, the use of threads, and the exploration of system functions in an uncomplicated manner. Furthermore, it's possible to compile your game without needing prior knowledge.<br>
 As a developer, I recognize that this game engine has its imperfections and defects. However, I commit to improving it every day and continuing this project with the valuable contribution of all of you!</p>
 
