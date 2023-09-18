@@ -23,8 +23,8 @@ As a developer, I recognize that this game engine has its imperfections and defe
 
 ✅ - Stable
 ⚠️ - Unstable
-🚧 - In construction...
-❌ - Project not started.
+🚧 - In construction
+❌ - Project not started
 | Language | Windows 64bits     | Windows 32bits | Linux 64bits   | Linux 32bits   | macOS |
 |----------|--------------------|----------------|----------------|----------------|-------|
 | Python   | ⚠️ | 🚧 | ❌ | ❌ | ❌|
