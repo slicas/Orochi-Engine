@@ -12,9 +12,24 @@
 The Orochi Engine features several modules that enable the creation of 2D games for the Windows and Linux<i>(coming soon)</i> platforms. Managing animations, databases, files, sprites, objects, and online games with Orochi is extremely straightforward.<br>
 Developed in Python, Orochi gives users an incredible level of control over their code, allowing the installation of external libraries, the use of threads, and the exploration of system functions in an uncomplicated manner. Furthermore, it's possible to compile your game without needing prior knowledge.<br>
 As a developer, I recognize that this game engine has its imperfections and defects. However, I commit to improving it every day and continuing this project with the valuable contribution of all of you!</p>
-
-
 <br>
+<br>
+
+## Supported Platforms
+
+<div align="center">
+<br>
+<br>
+  
+| Language | Windows 64bits     | Windows 32bits | Linux 64bits   | Linux 32bits   | macOS |
+|----------|--------------------|----------------|----------------|----------------|-------|
+| Python   | :heavy_check_mark: | :construction: | :construction: | :construction: | :x:   |
+| Lua      | :heavy_check_mark: | :construction: | :construction: | :construction: | :x:   |
+
+
+</div>
+
+
 <br>
 <br>
 
@@ -47,7 +62,6 @@ As a user, you have the ability to access the modules of the game engine and mod
 <br>
 <br>
 <br>
-
 
 
 <h2 align=left>
