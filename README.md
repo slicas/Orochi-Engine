@@ -20,11 +20,14 @@ As a developer, I recognize that this game engine has its imperfections and defe
 <div align="center">
 <br>
 <br>
-  
+
+:heavy_check_mark: - Stable
+:construction: - Unstable
+:x: - Being done
 | Language | Windows 64bits     | Windows 32bits | Linux 64bits   | Linux 32bits   | macOS |
 |----------|--------------------|----------------|----------------|----------------|-------|
-| Python   | :heavy_check_mark: | :construction: | :construction: | :construction: | :x:   |
-| Lua      | :heavy_check_mark: | :construction: | :construction: | :construction: | :x:   |
+| Python   | :heavy_check_mark: | :x: | :x: | :x: | :x:   |
+| Lua      | :heavy_check_mark: | :x: | :x: | :x: | :x:   |
 
 
 </div>
