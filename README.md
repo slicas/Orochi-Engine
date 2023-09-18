@@ -27,8 +27,8 @@ As a developer, I recognize that this game engine has its imperfections and defe
 ❌ - Project not started.
 | Language | Windows 64bits     | Windows 32bits | Linux 64bits   | Linux 32bits   | macOS |
 |----------|--------------------|----------------|----------------|----------------|-------|
-| Python   | ✅ | 🚧 | ❌ | ❌ | ❌|
-| Lua      | ✅ | 🚧 | ❌ | ❌ | ❌|
+| Python   | ⚠️ | 🚧 | ❌ | ❌ | ❌|
+| Lua      | ⚠️ | 🚧 | ❌ | ❌ | ❌|
 
 
 </div>
